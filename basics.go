@@ -135,7 +135,75 @@ func slices_n_stuf() {
 	fmt.Println(s2) // [d e f g h i]
 }
 
+func maps_n_stuff() {
+	m := make(map[string]int)
+
+	m["four"] = 4
+	m["three"] = 3
+	fmt.Println(m["three"])
+	delete(m, "three")
+	fmt.Println("Map: ", m)
+
+	val, ok := m["five"]
+	fmt.Println("Found?", ok, "val:", val)
+}
+
+func range_n_stuff() {
+	// Range iterates over stuff
+	nums := []int{1, 2, 3, 4, 56, 7, 8, 9}
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	fmt.Println(sum)
+
+	for i, c := range "this is my string!!%$£¬|" {
+		fmt.Println(i, c)
+	}
+
+}
+
+func multi_return() (string, string) {
+	a := "you"
+	b := "Gay!!!!"
+	return a, b
+}
+
+func varadic_func(nums ...int) {
+	// nums is iterable
+	for n := range nums {
+		fmt.Print(n)
+	}
+}
+
+func intSeq() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
+}
+
 func main() {
-	variables()
-	slices_n_stuf()
+	//variables()
+	//slices_n_stuff()
+	//maps_n_stuff()
+	//range_n_stuff()
+	//varadic_func(1, 2, 3)
+	//x := []int{2, 3, 65, 9, 8}
+	//varadic_func(x...) // The dots expand the slice into args
+	//myClosure := intSeq()
+	//fmt.Println(myClosure())
+	//fmt.Println(myClosure())
+	//fmt.Println(myClosure())
+
+	var fib func(n int) int
+	fib = func(n int) int {
+		if n < 2 {
+			return n
+		}
+		return fib(n-1) + fib(n-2)
+	}
+	fmt.Println(fib(11))
+
 }
